@@ -1,3 +1,7 @@
+/*
+Put chemical constants, matrices here.
+*/
+
 var CHEMICAL_NAMES = [
   'H2O',
   'CO2',

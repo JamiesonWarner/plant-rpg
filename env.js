@@ -1,3 +1,8 @@
+/*
+Environment the plant lives in. Maintains an array of tiles
+which represent chemical values in the world.
+tiles is a (WIDTH*HEIGHT) array of [c1,c2,c3] chemical values.
+*/
 var T_WIDTH = 100;
 var T_HEIGHT = 100;
 var T_SIZE = 6;
@@ -46,6 +51,9 @@ function makeTiles() {
         tile[3] = 0;
         tile[4] = 0;
       }
+      for (var k = 0; k < tile.length; k++) {
+        tile[k] += .01 * Math.random();
+      };
       tiles.push(tile)
     };
   };
