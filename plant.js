@@ -39,10 +39,38 @@ Plant.prototype.printVoronoiDiagram = function(){
     }
 }
 
+Plant.prototype.simpleUpdate = function(){
+  console.log("Ran simple update");
+  for(var i = 0; i < this.cells.length; i ++){
+    var cell = this.cells[i];
+    cell.x += 1;
+    this.updateGraphics(cell);
+  }
+}
+
+var mdNorm = {x:0, y: 1};
+var heatMapRatio = 5;
+
+Plant.prototype.mdConvergenceUpdate = function(){
+  
+
+}
+
+Plant.prototype.updateGraphics = function(cell){
+  cell.graphics.x = cell.x;
+  cell.graphics.y = cell.y;
+}
+
+
+
+
+
 function addCell(cell) {
+
   var graphics = game.add.graphics(cell.x, cell.y);
   graphics.beginFill(cell.c || 0x000000, 1);
   graphics.drawCircle(0, 0, 10);
+  cell.graphics = graphics;
 }
 
 

@@ -10,23 +10,26 @@ function create() {
   game.stage.backgroundColor = '#40a4df';
 
   var vDiagram = plant.getVoronoiDiagram();
-  plant.printVoronoiDiagram();
+  //plant.printVoronoiDiagram();
 
 
   var graphics = game.add.graphics(0, 0);
   graphics.lineStyle(10, 0xffd900, 1);
 
+  /*
   console.log("test");
   for(i = 0; i < vDiagram.edges.length; i ++){
   	var edge = vDiagram.edges[i];
 
   	graphics.moveTo(edge.va.x,edge.va.y);
   	graphics.lineTo(edge.vb.x, edge.vb.y);
-  }
+  }*/
 
-  plant.cells
-  plant.envCells
-
+  //plant.cells
+  //plant.envCells
+  onTick(function() {
+    plant.simpleUpdate()
+  });
 
   // Game world will be 100x100 blocks
   // Set up render loops
