@@ -1,6 +1,6 @@
 function Plant() {
-  this.cells = [{x:50,y:50},{x:50,y:49}];
-  this.envCells = [{x:49,y:50},{x:50,y:51},{x:51,y:50},{x:51,y:49},{x:50,y:49}];
+  this.cells = [{x:300,y:300,c:0x00FF00},{x:300,y:350,c:0x00FF00}];
+  this.envCells = [{x:250,y:300},{x:300,y:250},{x:350,y:300},{x:350,y:350},{x:300,y:400},{x:250,y:350}];
 
   for (var i = 0; i < this.cells.length; i++) {
     addCell(this.cells[i]);
@@ -12,13 +12,7 @@ function Plant() {
 }
 
 function addCell(cell) {
-  // var graphics = game.add.graphics(cell.x, cell.y);
-  for (var i = 0; i < 100; i += 10) {
-    var graphics = game.add.graphics(i, 0);
-    graphics.beginFill(0xFF0000, 1);
-    graphics.drawCircle(0, 0, 10);
-  }
-  var graphics = game.add.graphics(0, 0);
-  graphics.beginFill(0xFF0000, 1);
-  graphics.drawCircle(300, 300, 100);
+  var graphics = game.add.graphics(cell.x, cell.y);
+  graphics.beginFill(cell.c || 0x000000, 1);
+  graphics.drawCircle(0, 0, 10);
 }
