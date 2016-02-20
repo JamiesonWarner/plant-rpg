@@ -13,6 +13,8 @@ var skyColors = [
 0x045FB4, 0x084B8A, 0x08088A, 0x0B0B61, 0x191970
 ]
 
+
+
 function lightColorTimeOfDay(hour) {
 	return skyColors[hour];
 }
@@ -30,15 +32,22 @@ function currentLightColor() {
 function multiplyLight(color) {
   var lightColor = currentLightColor();
 
-  return lightColor / 0xFFFFFF * color;
+  var lr = lightColor >> 16;
+  var lg = (lightColor & 0x00FF00) >> 8;
+  var lb = (lightColor & 0x0000FF);
+  var cr = color >> 16;
+  var cg = (color & 0x00FF00) >> 8;
+  var cb = (color & 0x0000FF);
 
-  // if lightColor == 0xffffff, return color
-
-  // if lightColor == 0x000000, return 0x000000
-
-  // if lightColor == 0xFF0000, return 0xXX0000
-  // e.g. color == 0xDDDDDD, return DD000000
-
-  // ???
-  return color;
+  if (lightColor == 0xffffff){
+  	return color;
+  }else if(lightColor == 0x000000){
+  	return 0x000000;
+  }else{
+  	cr = lr/0xff*cr;
+  	cg = lg/0xff*cg;
+  	cb = lb/0xff*cb;
+  	return cr<<16+ cg<<8+ cb;
+  }
 }
+

@@ -61,6 +61,7 @@ function makeTiles() {
         tile[2] = .05;
         tile[3] = .2;
         tile[4] = .2;
+        tile[5] = .2;
       }
       else {
         tile[0] = .1;
@@ -68,6 +69,7 @@ function makeTiles() {
         tile[2] = .5;
         tile[3] = 0;
         tile[4] = 0;
+        tile[5] = 0;
       }
       for (var k = 0; k < tile.length; k++) {
         tile[k] += .001 * Math.random();
