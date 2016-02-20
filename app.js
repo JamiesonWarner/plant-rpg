@@ -34,8 +34,10 @@ function tick() {
 }
 
 
+
 var voronoiCalc = new Voronoi();
 
 function getVoronoiDiagram(plant){
 	return voronoiCalc.compute(plant.cells.concat(plant.envCells));
 }
+
