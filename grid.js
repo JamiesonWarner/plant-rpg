@@ -1,9 +1,13 @@
+/*
+Draws a grid over the game world.
+*/
+
 function Grid() {
-  var RANGE = 60;
-  var CELL_SIZE = 10;
+  var RANGE = 100;
+  var CELL_SIZE = 6;
 
   var graphics = game.add.graphics(0, 0);
-  graphics.lineStyle(1, 0xffd9ff, 1);
+  graphics.lineStyle(1, 535353, 1);
   for (var i = 0; i < RANGE; i++) {
     graphics.moveTo(i * CELL_SIZE, RANGE * CELL_SIZE);
     graphics.lineTo(i * CELL_SIZE, -RANGE * CELL_SIZE);
