@@ -4,7 +4,7 @@ var game = new Phaser.Game(bbox.xr, bbox.yb, Phaser.AUTO, 'phaser-example', {cre
 
 function create() {
   var env = new Env();
-  var grid = new  Grid();
+  // var grid = new  Grid();
   var plant = new Plant();
 
   game.stage.backgroundColor = '#40a4df';
@@ -26,13 +26,11 @@ function create() {
   plant.envCells
 
 
-// Game world will be 100x100 blocks
-// Set up render loops
-
-
+  // Game world will be 100x100 blocks
+  // Set up render loops
 }
 
-// Called once every second
+// Called once every second. 1 tick == 4 hours
 function tick() {
 
 }

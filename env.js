@@ -18,7 +18,6 @@ function Env() {
     for (var j = 0; j < T_WIDTH; j++) {
       var tile = this.tiles[i*T_WIDTH+j];
       var color = colorLerp(tile, CHEMICAL_COLORS);
-      console.log(color);
       graphics.ctx.fillStyle = "#" + color.toString(16);
       graphics.ctx.fillRect(j*T_SIZE,(T_HEIGHT-i-1)*T_SIZE,T_SIZE,T_SIZE);
     };
