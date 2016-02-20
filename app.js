@@ -1,4 +1,6 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', {create: create});
+
+var bbox = {xl: 0, xr:  800, yt: 0, yb: 600};
+var game = new Phaser.Game(bbox.xr, bbox.yb, Phaser.AUTO, 'phaser-example', {create: create});
 
 function create() {
   var plant = new Plant();
@@ -11,4 +13,10 @@ function create() {
 // Called once every second
 function tick() {
 
+}
+
+var voronoiCalc = new Voronoi();
+
+function getVoronoiDiagram(plant){
+	//return voronoiCalc.compute(plant.)
 }
