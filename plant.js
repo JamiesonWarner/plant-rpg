@@ -4,15 +4,21 @@ function Plant() {
 
   for (var i = 0; i < this.cells.length; i++) {
     addCell(this.cells[i]);
-  };
+  }
 
   for (var i = 0; i < this.envCells.length; i++) {
     addCell(this.envCells[i]);
-  };
+  }
 }
 
 function addCell(cell) {
-  var graphics = game.add.graphics(cell.x, cell.y);
+  // var graphics = game.add.graphics(cell.x, cell.y);
+  for (var i = 0; i < 100; i += 10) {
+    var graphics = game.add.graphics(i, 0);
+    graphics.beginFill(0xFF0000, 1);
+    graphics.drawCircle(0, 0, 10);
+  }
+  var graphics = game.add.graphics(0, 0);
   graphics.beginFill(0xFF0000, 1);
   graphics.drawCircle(300, 300, 100);
 }
