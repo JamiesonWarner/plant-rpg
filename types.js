@@ -7,8 +7,8 @@ var CHEMICAL_FORMULAS = [
   'CO2',
   'O2',
   'N2',
-  'K2',
-  'C6H12O6'
+  'P',
+  'K'
 ]
 
 var CHEMICAL_NAMES = [
@@ -17,14 +17,14 @@ var CHEMICAL_NAMES = [
   'oxygen',
   'nitrogen',
   'phosphorus',
-  'glucose'
+  'potassium'
 ]
 
 var CHEMICAL_COLORS = [
-  0x4444FF,
-  0xFFFFBB,
-  0xDDDDFF,
-  0xAAFFAA,
-  0x00FF00,
-  0xFFFFFF
+  0x1A2117,
+  0xE2EEED,
+  0xFFFFFF,
+  0x8C705F,
+  0x5F4E44,
+  0x604434
 ]

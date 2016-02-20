@@ -6,9 +6,17 @@ function l2norm(arr) {
   return Math.sqrt(sumsqr);
 }
 
-function normalize(arr) {
+function l1norm(arr) {
+  var sum = 0;
+  for (var i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  };
+  return sum;
+}
+
+function normalize(arr, norm) {
   var arr2 = clone(arr);
-  var length = l2norm(arr2);
+  var length = (norm || l2norm)(arr2);
   for (var i = 0; i < arr2.length; i++) {
     arr2[i] /= length;
   };
@@ -24,7 +32,7 @@ function clone(arr) {
 }
 
 function colorLerp(values, colors) {
-  var v = normalize(values);
+  var v = normalize(values, l1norm);
   var color = 0;
   for (var i = 0; i < values.length; i++) {
     color += v[i] * colors[i];

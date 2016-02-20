@@ -1,4 +1,5 @@
 function Plant() {
+<<<<<<< HEAD
   this.cells = [];
   this.envCells = []
   this.root;
@@ -6,6 +7,9 @@ function Plant() {
   generateBasicPlant(this,3)
 
   randomizeMasses(this);
+
+  //this.cells = [{x:300,y:300,c:0x00FF00,nut:[1,1,1,1,1,1]},{x:300,y:350,c:0x00FF00,nut:[1,1,1,1,1,1]}];
+  //this.envCells = [{x:250,y:300},{x:300,y:250},{x:350,y:300},{x:350,y:350},{x:300,y:400},{x:250,y:350}];
 
   for (var i = 0; i < this.cells.length; i++) {
     addCell(this.cells[i]);
@@ -113,6 +117,7 @@ Plant.prototype.mdConvergenceUpdateV2 = function(){
 }
 
 Plant.prototype.mdConvergenceUpdate = function(){
+
   var allSites = this.cells.concat(this.envCells);
 
   for(var i = 0; i < allSites.length; i ++){
