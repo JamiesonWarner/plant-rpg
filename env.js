@@ -12,12 +12,27 @@ function Env() {
   console.log('Env tiles', this.tiles);
 
   // tiles[0] is at world coordinates [0,594]
-  var graphics = game.add.bitmapData(T_WIDTH * T_SIZE, T_HEIGHT * T_SIZE);
+  this.graphics = game.add.bitmapData(T_WIDTH * T_SIZE, T_HEIGHT * T_SIZE);
+  this.draw();
+  this.graphics.addToWorld();
+
+  var self = this;
+  onTick(function() {
+    self.draw();
+  })
+  // window.graphics = graphics;
+}
+
+Env.prototype.draw = function() {
+  var graphics = this.graphics;
   graphics.ctx.beginPath();
+  var lightColor = currentLightColor();
   for (var i = 0; i < T_HEIGHT; i++) {
     for (var j = 0; j < T_WIDTH; j++) {
       var tile = this.tiles[i*T_WIDTH+j];
       var color = colorLerp(tile, CHEMICAL_COLORS);
+
+      color *= (lightColor / 0xffffff);
       // color = 8690307;
       // console.log(color);
       // color = "#" + (i+j).toString(16);
@@ -25,12 +40,13 @@ function Env() {
       graphics.ctx.fillRect(j*T_SIZE,(T_HEIGHT-i-1)*T_SIZE,T_SIZE,T_SIZE);
     };
   };
-  graphics.addToWorld();
-
-  window.graphics = graphics;
 }
 
+/* Gets the tile at the given screen coordinates */
 Env.prototype.getTile = function(x,y) {
+  x /= T_SIZE;
+  y /= T_SIZE;
+  y = T_HEIGHT-y-1;
   return this.tiles[Math.floor(x) + T_WIDTH * Math.floor(y)];
 }
 

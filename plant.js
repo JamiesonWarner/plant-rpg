@@ -1,5 +1,5 @@
 function Plant() {
-  this.cells = [{x:300,y:300,c:0x00FF00},{x:300,y:350,c:0x00FF00}];
+  this.cells = [{x:300,y:300,c:0x00FF00,nut:[1,1,1,1,1,1]},{x:300,y:350,c:0x00FF00,nut:[1,1,1,1,1,1]}];
   this.envCells = [{x:250,y:300},{x:300,y:250},{x:350,y:300},{x:350,y:350},{x:300,y:400},{x:250,y:350}];
 
   for (var i = 0; i < this.cells.length; i++) {
@@ -52,7 +52,7 @@ var mdNorm = {x:0, y: 1};
 var heatMapRatio = 5;
 
 Plant.prototype.mdConvergenceUpdate = function(){
-  
+
 
 }
 
