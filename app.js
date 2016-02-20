@@ -9,7 +9,9 @@ function create() {
 
   game.stage.backgroundColor = '#40a4df';
 
-  var vDiagram = getVoronoiDiagram(plant);
+  var vDiagram = plant.getVoronoiDiagram();
+  plant.printVoronoiDiagram();
+
 
   var graphics = game.add.graphics(0, 0);
   graphics.lineStyle(10, 0xffd900, 1);
@@ -17,7 +19,7 @@ function create() {
   console.log("test");
   for(i = 0; i < vDiagram.edges.length; i ++){
   	var edge = vDiagram.edges[i];
-  	//console.log(edge);
+
   	graphics.moveTo(edge.va.x,edge.va.y);
   	graphics.lineTo(edge.vb.x, edge.vb.y);
   }
@@ -32,11 +34,7 @@ function create() {
 
 
 
-var voronoiCalc = new Voronoi();
 
-function getVoronoiDiagram(plant){
-	return voronoiCalc.compute(plant.cells.concat(plant.envCells),bbox);
-}
 
 var tickCbs = [];
 function onAnimationFrame(cb) {

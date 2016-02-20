@@ -3,7 +3,7 @@ function l2norm(arr) {
   for (var i = 0; i < arr.length; i++) {
     sumsqr += arr[i] * arr[i];
   };
-  return Math.sqrt(length);
+  return Math.sqrt(sumsqr);
 }
 
 function normalize(arr) {
@@ -27,7 +27,7 @@ function colorLerp(values, colors) {
   var v = normalize(values);
   var color = 0;
   for (var i = 0; i < values.length; i++) {
-    color += values[i] * colors[i];
+    color += v[i] * colors[i];
   };
   return Math.floor(color);
 }
