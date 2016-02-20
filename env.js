@@ -15,7 +15,7 @@ function Env() {
       graphics.ctx.rect(0,0,T_SIZE,T_SIZE);
       graphics.ctx.fillStyle = color;
       graphics.ctx.fill();
-      game.add.sprite(j*T_SIZE,i*T_SIZE);
+      // game.add.sprite(j*T_SIZE,i*T_SIZE);
     };
   };
   graphics.addToWorld();
