@@ -9,6 +9,34 @@ function Plant() {
   for (var i = 0; i < this.envCells.length; i++) {
     addCell(this.envCells[i]);
   }
+
+  this.voronoiCalc = new Voronoi();
+
+}
+
+Plant.prototype.getVoronoiDiagram = function(){
+    return this.voronoiCalc.compute(this.cells.concat(this.envCells),bbox);
+}
+
+Plant.prototype.printVoronoiDiagram = function(){
+    var diagram = this.getVoronoiDiagram();
+
+    for(var i = 0; i < diagram.cells.length; i ++){
+        var cell = diagram.cells[i];
+        if(cell.site.c){
+          console.log("Cell:Plant");
+        }
+        else{
+          console.log("Cell:Env");
+        }
+        for(var j = 0; j < cell.halfedges.length; j ++){
+          var halfEdge = cell.halfedges[j];
+          var edge = halfEdge.edge;
+          var va = edge.va;
+          var vb = edge.vb;
+          console.log("\tEdge: (" + va.x + ", " + va.y + ")  ->  (" + vb.x + ", " + vb.y +")");
+        }
+    }
 }
 
 function addCell(cell) {
@@ -16,3 +44,5 @@ function addCell(cell) {
   graphics.beginFill(cell.c || 0x000000, 1);
   graphics.drawCircle(0, 0, 10);
 }
+
+
