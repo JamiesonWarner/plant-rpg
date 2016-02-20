@@ -6,7 +6,7 @@ function create() {
   var grid = new Grid();
   var plant = new Plant();
 
-  game.stage.backgroundColor = '#535353';
+  game.stage.backgroundColor = '#0000FF';
 
   // var vDiagram = getVoronoiDiagram(plant);
 
