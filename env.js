@@ -18,6 +18,9 @@ function Env() {
     for (var j = 0; j < T_WIDTH; j++) {
       var tile = this.tiles[i*T_WIDTH+j];
       var color = colorLerp(tile, CHEMICAL_COLORS);
+      // color = 8690307;
+      // console.log(color);
+      // color = "#" + (i+j).toString(16);
       graphics.ctx.fillStyle = "#" + color.toString(16);
       graphics.ctx.fillRect(j*T_SIZE,(T_HEIGHT-i-1)*T_SIZE,T_SIZE,T_SIZE);
     };
@@ -51,9 +54,9 @@ function makeTiles() {
         tile[4] = 0;
       }
       for (var k = 0; k < tile.length; k++) {
-        tile[k] += .01 * Math.random();
+        tile[k] += .001 * Math.random();
       };
-      tiles.push(tile)
+      tiles.push(tile);
     };
   };
   return tiles;

@@ -4,7 +4,8 @@ var game = new Phaser.Game(bbox.xr, bbox.yb, Phaser.AUTO, 'phaser-example', {cre
 
 function create() {
   var env = new Env();
-  // var grid = new  Grid();
+  window.env = env;
+  var grid = new  Grid();
   var plant = new Plant();
 
   game.stage.backgroundColor = '#40a4df';
@@ -28,7 +29,7 @@ function create() {
   //plant.cells
   //plant.envCells
   onTick(function() {
-    plant.simpleUpdate()
+    // plant.simpleUpdate()
   });
 
   // Game world will be 100x100 blocks
