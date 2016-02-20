@@ -3,13 +3,17 @@ var bbox = {xl: 0, xr: 600, yt: 0, yb: 600};
 var game = new Phaser.Game(bbox.xr, bbox.yb, Phaser.AUTO, 'phaser-example', {create: create});
 
 function create() {
+
+  var cross = crossProduct({x:0,y:1,z:0}, {x:0,y:0,z:1});
+  console.log("Cross product test" + cross.x + " " + cross.y + " " + cross.z);
+
   var env = new Env();
   // var grid = new  Grid();
   var plant = new Plant();
 
   game.stage.backgroundColor = '#40a4df';
 
-  var vDiagram = plant.getVoronoiDiagram();
+  //var vDiagram = plant.getVoronoiDiagram();
   //plant.printVoronoiDiagram();
 
 
@@ -27,9 +31,9 @@ function create() {
 
   //plant.cells
   //plant.envCells
-  onTick(function() {
-    plant.simpleUpdate()
-  });
+  /*onTick(function() {
+    plant.mdConvergenceUpdate()
+  });*/
 
   // Game world will be 100x100 blocks
   // Set up render loops
