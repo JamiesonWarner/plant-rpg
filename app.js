@@ -14,10 +14,14 @@ function create() {
   var graphics = game.add.graphics(0, 0);
   graphics.lineStyle(10, 0xffd900, 1);
 
-  // for(edge in vDiagram.edges){
-  // 	graphics.moveTo(edge.va.x,edge.va.y);
-  // 	graphics.lintTo(edge.vb.x, edge.vb.y);
-  // }
+  console.log("test");
+  for(i = 0; i < vDiagram.edges.length; i ++){
+  	var edge = vDiagram.edges[i];
+  	//console.log(edge);
+  	graphics.moveTo(edge.va.x,edge.va.y);
+  	graphics.lineTo(edge.vb.x, edge.vb.y);
+  }
+
 
 
   plant.cells
@@ -40,6 +44,6 @@ function tick() {
 var voronoiCalc = new Voronoi();
 
 function getVoronoiDiagram(plant){
-	return voronoiCalc.compute(plant.cells.concat(plant.envCells));
+	return voronoiCalc.compute(plant.cells.concat(plant.envCells),bbox);
 }
 
