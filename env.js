@@ -6,16 +6,16 @@ function Env() {
   this.tiles = makeTiles();
   console.log('Env tiles', this.tiles);
 
-  // tiles[0][0] is at world coordinates [0,594]
+  // tiles[0] is at world coordinates [0,594]
   var graphics = game.add.bitmapData(T_WIDTH * T_SIZE, T_HEIGHT * T_SIZE);
   graphics.ctx.beginPath();
   for (var i = 0; i < T_HEIGHT; i++) {
     for (var j = 0; j < T_WIDTH; j++) {
-      var color = colorLerp(this.tiles[i][j], CHEMICAL_COLORS);
-      graphics.ctx.rect(0,0,T_SIZE,T_SIZE);
-      graphics.ctx.fillStyle = color;
-      graphics.ctx.fill();
-      // game.add.sprite(j*T_SIZE,i*T_SIZE);
+      var tile = this.tiles[i*T_WIDTH+j];
+      var color = colorLerp(tile, CHEMICAL_COLORS);
+      console.log(color);
+      graphics.ctx.fillStyle = "#" + color.toString(16);
+      graphics.ctx.fillRect(j*T_SIZE,(T_HEIGHT-i-1)*T_SIZE,T_SIZE,T_SIZE);
     };
   };
   graphics.addToWorld();
@@ -23,11 +23,13 @@ function Env() {
   window.graphics = graphics;
 }
 
+Env.prototype.getTile = function(x,y) {
+  return this.tiles[Math.floor(x) + T_WIDTH * Math.floor(y)];
+}
+
 function makeTiles() {
   var tiles = new Array();
   for (var i = 0; i < T_HEIGHT; i++) {
-    var row = new Array();
-    tiles.push(row);
     for (var j = 0; j < T_WIDTH; j++) {
       var tile = makeTile();
       if (i < 50) {
@@ -44,7 +46,7 @@ function makeTiles() {
         tile[3] = 0;
         tile[4] = 0;
       }
-      row.push(tile)
+      tiles.push(tile)
     };
   };
   return tiles;

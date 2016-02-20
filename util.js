@@ -29,5 +29,5 @@ function colorLerp(values, colors) {
   for (var i = 0; i < values.length; i++) {
     color += values[i] * colors[i];
   };
-  return color;
+  return Math.floor(color);
 }

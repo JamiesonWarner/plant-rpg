@@ -3,9 +3,9 @@ var bbox = {xl: 0, xr: 600, yt: 0, yb: 600};
 var game = new Phaser.Game(bbox.xr, bbox.yb, Phaser.AUTO, 'phaser-example', {create: create});
 
 function create() {
-  var grid = new Grid();
+  var env = new Env();
+  var grid = new  Grid();
   var plant = new Plant();
-  // var env = new Env();
 
   game.stage.backgroundColor = '#40a4df';
 
@@ -21,8 +21,6 @@ function create() {
   	graphics.moveTo(edge.va.x,edge.va.y);
   	graphics.lineTo(edge.vb.x, edge.vb.y);
   }
-
-
 
   plant.cells
   plant.envCells
