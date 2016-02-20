@@ -5,8 +5,9 @@ var game = new Phaser.Game(bbox.xr, bbox.yb, Phaser.AUTO, 'phaser-example', {cre
 function create() {
   var grid = new Grid();
   var plant = new Plant();
+  var env = new Env();
 
-  game.stage.backgroundColor = '#0000FF';
+  game.stage.backgroundColor = '#40a4df';
 
   // var vDiagram = getVoronoiDiagram(plant);
 
