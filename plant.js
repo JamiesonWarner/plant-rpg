@@ -1,5 +1,4 @@
 function Plant() {
-<<<<<<< HEAD
   this.cells = [];
   this.envCells = []
   this.root;
