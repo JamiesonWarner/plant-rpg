@@ -7,6 +7,7 @@ var env,
     plant;
 
 function create() {
+
   env = new Env();
   grid = new  Grid();
   plant = new Plant();
@@ -33,6 +34,7 @@ function create() {
 
   //plant.cells
   //plant.envCells
+
   onTick(function() {
     // plant.simpleUpdate()
     fluidTick(plant);
