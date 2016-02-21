@@ -3,7 +3,7 @@ function Plant() {
   this.envCells = []
   this.root;
 
-  generateBasicPlant(this,4);
+  generateBeanPlant(this);
   //generateEnvironment(this);
   //generateEnvironmentBorder(this);
   randomizeMasses(this);
@@ -32,7 +32,7 @@ Plant.prototype.destroy = function() {
   };
 }
 
-var nutDensity = [1,1,1,1,1,1];
+var nutDensity = [1,1,1,1,1,1,1,1];
 
 var getMass = function(cell){
   var mass = 0;
@@ -42,7 +42,15 @@ var getMass = function(cell){
   return mass;
 }
 
-function generateBasicPlant(plant, height){
+function generateBeanPlant(plant){
+  plant.root = {x: 300, y: 280, c:0x00FF00, nut:[1,1,1,1,1,1,1,1]};
+  plant.cells = [
+    plant.root,
+    {x: 300, y: 320, c:0x00FF00, nut:[1,1,1,1,1,1,1,1], parent: plant.root}
+  ];
+}
+
+function generateComplicatedPlant(plant, height){
 
   var root = {x: 400, y: 400, c:0x00FF00, nut:[1,1,1,1,1,1]};
 
@@ -167,7 +175,7 @@ Plant.prototype.mdConvergenceUpdateV2 = function(){
 
         var newDelta = multiply(getNorm(e), learningRate * dif);
         //console.log("New delta : (" + newDelta.x + ", " + newDelta.y + " )");
-        recurse(child, add(delta,  newDelta)); 
+        recurse(child, add(delta,  newDelta));
 
 
       }

@@ -58,7 +58,6 @@ function makeTiles() {
     for (var j = 0; j < T_WIDTH; j++) {
       var tile = makeTile();
       if (i < 50) {
-        console.log(slider1.value);
         tile[0] = Number(slider1.value);
         tile[1] = Number(slider2.value);
         tile[2] = Number(slider3.value);
