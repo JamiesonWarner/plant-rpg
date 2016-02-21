@@ -23,6 +23,10 @@ function Env() {
   // window.graphics = graphics;
 }
 
+Env.prototype.destroy = function() {
+  this.graphics.destroy();
+}
+
 Env.prototype.draw = function() {
   var graphics = this.graphics;
   graphics.ctx.clearRect(0,0,600,600);

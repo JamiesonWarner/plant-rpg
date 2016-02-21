@@ -23,6 +23,15 @@ function Plant() {
 
 }
 
+Plant.prototype.destroy = function() {
+  for (var i = 0; i < this.cells.length; i++) {
+    this.cells[i].graphics.destroy();
+  };
+  for (var i = 0; i < this.envCells.length; i++) {
+    this.envCells[i].graphics.destroy();
+  };
+}
+
 var nutDensity = [1,1,1,1,1,1];
 
 var getMass = function(cell){
