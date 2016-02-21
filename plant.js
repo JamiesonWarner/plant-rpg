@@ -67,6 +67,11 @@ function generateBasicPlant(plant, height){
   plant.root = root;
 }
 
+
+Plant.prototype.smartGrow = function(){
+  
+}
+
 function generateEnvironmentBorder(plant){
   for(var x = 10; x < bbox.xr; x += 5){
     plant.envCells.push({x:x, y:10, isEnv:true});
