@@ -5,7 +5,7 @@ function Plant() {
 
   generateBasicPlant(this,4);
   //generateEnvironment(this);
-  generateEnvironmentBorder(this);
+  //generateEnvironmentBorder(this);
   randomizeMasses(this);
 
   //this.cells = [{x:300,y:300,c:0x00FF00,nut:[1,1,1,1,1,1]},{x:300,y:350,c:0x00FF00,nut:[1,1,1,1,1,1]}];
