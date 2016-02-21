@@ -30,7 +30,7 @@ function startSimulation() {
     graphics.clear();
 
 
-    graphics.lineStyle(2, 0xffd900);
+    graphics.lineStyle(2, 0xFF33ff);
     graphics.beginFill(0xFF33ff);
     recursiveDrawBranches(plant.root, {x:plant.root.x - 0.5 * thickness(plant.root) , y: plant.root.y}, 
       {x:plant.root.x + 0.5* thickness(plant.root) , y: plant.root.y}, graphics);
@@ -68,7 +68,7 @@ function startSimulation() {
       poly = getCorrectPolygon(va,vb,vc,vd);
       g.drawPolygon(poly.points);
       recursiveDrawBranches(child, vc, vd, g);
-    }
+    } 
   }
 
   onTick(function() {
