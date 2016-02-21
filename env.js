@@ -25,18 +25,16 @@ function Env() {
 
 Env.prototype.draw = function() {
   var graphics = this.graphics;
+  graphics.ctx.clearRect(0,0,600,600);
   graphics.ctx.beginPath();
-  var lightColor = currentLightColor();
+  // var lightColor = currentLightColor();
+  console.log(hour);
   for (var i = 0; i < T_HEIGHT; i++) {
     for (var j = 0; j < T_WIDTH; j++) {
       var tile = this.tiles[i*T_WIDTH+j];
       var color = colorLerp(tile, CHEMICAL_COLORS);
-
-      color *= (lightColor / 0xffffff);
-      // color = 8690307;
-      // console.log(color);
-      // color = "#" + (i+j).toString(16);
-      graphics.ctx.fillStyle = "#" + color.toString(16);
+      color = multiplyLight(color);
+      graphics.ctx.fillStyle = colorToString(color);
       graphics.ctx.fillRect(j*T_SIZE,(T_HEIGHT-i-1)*T_SIZE,T_SIZE,T_SIZE);
     };
   };

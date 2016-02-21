@@ -39,3 +39,30 @@ function colorLerp(values, colors) {
   };
   return Math.floor(color);
 }
+
+/*
+Computes a - b
+*/
+function vecDifference(a, b){
+  var arr = new Array(a.length);
+  for (var i = 0; i < arr.length; i++) {
+    arr[i] = a[i] - b[i];
+  };
+  return arr;
+}
+
+/*
+Scales the vector x by a constant c, without making a new vector.
+*/
+function vecScale(x, c) {
+
+}
+
+function colorToString(color) {
+  var str = color.toString(16);
+  var zeros = "";
+  for (var i = 0; i < 6-str.length; i++) {
+    zeros = "0" + zeros;
+  };
+  return "#" + zeros + str;
+}

@@ -5,6 +5,8 @@ function FluidSim(plant) {
   });
 }
 
+var INSULATION_COEFF = .1;
+
 function fluidTick(plant) {
   var vDiagram = plant.getVoronoiDiagram();
   for (var i = 0; i < vDiagram.edges.length; i++) {
@@ -18,11 +20,14 @@ function fluidTick(plant) {
     // Cell<->Cell boundary
     else if (lnut && rnut) {
       // Passive transport
-      env.getTile()
+      var delta = vecDifference(lnut,rnut);
+      vecScale(delta, INSULATION_COEFF);
+
     }
     // Env<->Cell boundary
     else {
       // Passive transport
+      env.getTile();
 
     }
     // console.log(edge);
