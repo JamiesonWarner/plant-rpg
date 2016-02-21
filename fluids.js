@@ -7,7 +7,19 @@ function FluidSim(plant) {
 
 var INSULATION_COEFF = .1;
 
+/*
+Adds value dnut to every cell
+*/
 function fluidTick(plant) {
+  // Reset dnut on every cell
+  for (var i = 0; i < plant.cells.length; i++) {
+    plant.cells[i].dnut = zeros(N_NUTRIENTS);
+  };
+  for (var i = 0; i < plant.envCells.length; i++) {
+    plant.envCells[i].dnut = zeros(N_NUTRIENTS);
+  };
+
+  // Calculate dnut on every cell as a function of passive transport
   var vDiagram = plant.getVoronoiDiagram();
   for (var i = 0; i < vDiagram.edges.length; i++) {
     var edge = vDiagram.edges[i];
@@ -23,15 +35,31 @@ function fluidTick(plant) {
       // Passive transport
       var delta = vecDifference(lnut,rnut);
       vecScale(delta, INSULATION_COEFF);
-
+      vecAddInPlace(rnut, delta);
+      var negDelta = vecScale(clone(delta), -1);
+      vecAddInPlace(lnut, negDelta);
     }
     // Env<->Cell boundary
     else {
+      var envCell = lnut? edge.rSite : edge.lSite,
+          cellNut = lnut? lnut: rnut;
+
       // Passive transport
-      env.getTile();
+      var envNut = env.getTile(envCell.x, envCell.y);
+      var delta = vecDifference(envNut, cellNut);
+
+      // Passive transport
+
+      vecScale(delta, INSULATION_COEFF);
+      vecAddInPlace(cellNut, delta);
 
     }
-    // console.log(edge);
+  };
+
+  // Apply deltas
+  for (var i = 0; i < plant.cells.length; i++) {
+    console.log(plant.cells[i].nut, plant.cells[i].dnut);
+    vecAddInPlace(plant.cells[i].nut, plant.cells[i].dnut);
   };
 }
 

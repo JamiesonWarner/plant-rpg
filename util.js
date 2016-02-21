@@ -55,7 +55,19 @@ function vecDifference(a, b){
 Scales the vector x by a constant c, without making a new vector.
 */
 function vecScale(x, c) {
+  for (var i = 0; i < x.length; i++) {
+    x[i] *= c;
+  };
+  return x;
+}
 
+/*
+a <- a + b
+*/
+function vecAddInPlace(a, b) {
+  for (var i = 0; i < a.length; i++) {
+    a[i] += b[i];
+  };
 }
 
 function colorToString(color) {
@@ -66,3 +78,18 @@ function colorToString(color) {
   };
   return "#" + zeros + str;
 }
+
+/* Takes a nutrient vector and returns its color as a hex string #ffffff
+*/
+function nutrientColor(nut) {
+  return colorToString(colorLerp(nut, CHEMICAL_COLORS));
+}
+
+function zeros(length) {
+  var arr = new Array(length);
+  for (var i = 0; i < arr.length; i++) {
+    arr[i] = 0;
+  };
+  return arr;
+}
+

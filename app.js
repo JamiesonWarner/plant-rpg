@@ -21,10 +21,10 @@ function create() {
 
 
   var graphics = game.add.graphics(0, 0);
-  
+
 
   console.log("test");
-  
+
 
   onTick(function(){
     console.log("running convergence tick");
@@ -52,10 +52,9 @@ function create() {
   //plant.cells
   //plant.envCells
 
-  /*onTick(function() {
-    // plant.simpleUpdate()
+  onTick(function() {
     fluidTick(plant);
-  });*/
+  });
 
   // Game world will be 100x100 blocks
   // Set up render loops

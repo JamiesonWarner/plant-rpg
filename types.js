@@ -1,6 +1,7 @@
 /*
 Put chemical constants, matrices here.
 */
+var N_NUTRIENTS = 6;
 
 var CHEMICAL_FORMULAS = [
   'H2O',
