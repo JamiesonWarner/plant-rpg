@@ -21,24 +21,41 @@ function create() {
 
 
   var graphics = game.add.graphics(0, 0);
-  graphics.lineStyle(10, 0xffd900, 1);
-
+  
 
   console.log("test");
-  for(i = 0; i < vDiagram.edges.length; i ++){
-  	var edge = vDiagram.edges[i];
+  
 
-  	graphics.moveTo(edge.va.x,edge.va.y);
-  	graphics.lineTo(edge.vb.x, edge.vb.y);
-  }
+  onTick(function(){
+    console.log("running convergence tick");
+    plant.mdConvergenceUpdateV2();
+    for(var i = 0; i < plant.cells.length; i ++){
+      plant.updateGraphics(plant.cells[i]);
+    }
+    var vDiagram = plant.getVoronoiDiagram();
+    graphics.clear();
+    graphics.lineStyle(3, 0xffd900, 1);
+
+    for(i = 0; i < vDiagram.cells.length; i ++){
+      var cell = vDiagram.cells[i];
+    }
+
+    for(i = 0; i < vDiagram.edges.length; i ++){
+      var edge = vDiagram.edges[i];
+
+      graphics.moveTo(edge.va.x,edge.va.y);
+      graphics.lineTo(edge.vb.x, edge.vb.y);
+    }
+
+  });
 
   //plant.cells
   //plant.envCells
 
-  onTick(function() {
+  /*onTick(function() {
     // plant.simpleUpdate()
     fluidTick(plant);
-  });
+  });*/
 
   // Game world will be 100x100 blocks
   // Set up render loops

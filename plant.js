@@ -3,7 +3,8 @@ function Plant() {
   this.envCells = []
   this.root;
 
-  generateBasicPlant(this,3)
+  generateBasicPlant(this,3);
+  generateEnvironment(this);
 
   randomizeMasses(this);
 
@@ -22,9 +23,19 @@ function Plant() {
 
 }
 
+var nutDensity = [1,1,1,1,1,1];
+
+var getMass = function(cell){
+  var mass = 0;
+  for(var i = 0; i < cell.nut.length; i ++){
+    mass += cell.nut[i] * nutDensity[i];
+  }
+  return mass;
+}
+
 function generateBasicPlant(plant, height){
 
-  var root = {x: 400, y: 400};
+  var root = {x: 400, y: 400, c:0x00FF00, nut:[1,1,1,1,1,1]};
 
   recurse(root,height);
 
@@ -34,15 +45,23 @@ function generateBasicPlant(plant, height){
       return;
     }
     else{
-      var childA = {x: cur.x + Math.pow(2,height) * 5, y: cur.y - 50};
-      var childB = {x: cur.x - Math.pow(2,height) * 5, y: cur.y - 50};
-      cur.children={childA, childB};
+      var childA = {x: cur.x + Math.pow(2,height) * 5, y: cur.y - 50, c:0x00FF00,nut:[1,1,1,1,1,1]};
+      var childB = {x: cur.x - Math.pow(2,height) * 5, y: cur.y - 50, c:0x00FF00, nut:[1,1,1,1,1,1]};
+      cur.children=[childA, childB];
       recurse(childA,height -1);
       recurse(childB, height -1);
     }
   }
 
   plant.root = root;
+}
+
+function generateEnvironment(plant){
+  for(var x = 0; x < bbox.xr; x += 50){
+    for(var y = 0; y < bbox.yb; y += 50){
+      plant.envCells.push({x:x, y:y, isEnv:true})
+    }
+  }
 }
 
 
@@ -109,10 +128,32 @@ function crossProduct(a, b){
 var mdNorm = {x:0, y: 1};
 var mdTangent = crossProduct(mdNorm, {x:0, y:0, z:1});
 var mdRatio = 5;
-var learningRate = 0.01;
+var learningRate = 0.1;
+var v2ConvergeScale = 20;
 
 Plant.prototype.mdConvergenceUpdateV2 = function(){
+  recurse(this.root, {x:0, y:0});
+  function recurse(cur, delta){
+    if(cur.children){
+      for(var i = 0; i < cur.children.length; i ++){
+        var child = cur.children[i];
+        var e = subtract(child, cur);
+        var mag_e = magnitude(e);
+        var dif =  v2ConvergeScale * (getMass(cur) + getMass(child)) / cur.children.length - mag_e;
 
+        var newDelta = multiply(getNorm(e), learningRate * dif);
+        console.log("New delta : (" + newDelta.x + ", " + newDelta.y + " )");
+        recurse(child, add(delta,  newDelta)); 
+
+      }    
+    }
+    moveCell(cur, delta, 1);
+  }
+}
+
+function getNorm(v){
+  var mag = magnitude(v);
+  return {x: v.x / mag, y: v.y / mag};
 }
 
 Plant.prototype.mdConvergenceUpdate = function(){
@@ -164,6 +205,13 @@ Plant.prototype.mdConvergenceUpdate = function(){
 }
 
 
+function add(a,b){
+  return {x:a.x + b.x, y: a.y + b.y};
+}
+
+function multiply(v, mag){
+  return {x: v.x * mag, y: v.y * mag};
+}
 
 function subtract(a, b){
   return {x: a.x - b.x, y: a.y - b.y};
@@ -180,6 +228,10 @@ function moveCell(cell, norm, mag){
 
 function eDistance(cellA, cellB){
   return Math.sqrt(Math.pow(cellA.x - cellB.x, 2) + Math.pow(cellA.y - cellB.y, 2));
+}
+
+function magnitude(v){
+  return Math.sqrt(v.x * v.x + v.y * v.y);
 }
 
 
