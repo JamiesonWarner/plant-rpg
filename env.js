@@ -28,7 +28,6 @@ Env.prototype.draw = function() {
   graphics.ctx.clearRect(0,0,600,600);
   graphics.ctx.beginPath();
   // var lightColor = currentLightColor();
-  console.log(hour);
   for (var i = 0; i < T_HEIGHT; i++) {
     for (var j = 0; j < T_WIDTH; j++) {
       var tile = this.tiles[i*T_WIDTH+j];

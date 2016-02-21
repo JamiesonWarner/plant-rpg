@@ -23,7 +23,6 @@ var hour = 0;
 onTick(function() {
   hour ++;
   hour %= 24;
-  console.log('current color', skyColors[hour]);
 });
 
 function currentLightColor() {

@@ -11,6 +11,7 @@ function fluidTick(plant) {
   var vDiagram = plant.getVoronoiDiagram();
   for (var i = 0; i < vDiagram.edges.length; i++) {
     var edge = vDiagram.edges[i];
+    if (!edge.lSite || !edge.rSite) continue;
     var lnut = edge.lSite.nut,
         rnut = edge.rSite.nut;
     // Env<->Env boundary
