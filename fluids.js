@@ -44,7 +44,7 @@ function fluidTick(plant) {
 
   // Apply deltas
   for (var i = 0; i < plant.cells.length; i++) {
-    console.log(plant.cells[i].nut, plant.cells[i].dnut);
+    // console.log(plant.cells[i].nut, plant.cells[i].dnut);
     vecAddInPlace(plant.cells[i].nut, plant.cells[i].dnut);
   };
 }
