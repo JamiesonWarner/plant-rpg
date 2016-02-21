@@ -27,6 +27,7 @@ Env.prototype.destroy = function() {
   this.graphics.destroy();
 }
 
+
 Env.prototype.draw = function() {
   var graphics = this.graphics;
   graphics.ctx.clearRect(0,0,600,600);
@@ -57,20 +58,20 @@ function makeTiles() {
     for (var j = 0; j < T_WIDTH; j++) {
       var tile = makeTile();
       if (i < 50) {
-        tile[0] = .8;
-        tile[1] = .05;
-        tile[2] = .05;
-        tile[3] = .2;
-        tile[4] = .2;
-        tile[5] = .2;
+        tile[0] = slider1.value;
+        tile[1] = slider2.value;
+        tile[2] = slider3.value;
+        tile[3] = slider4.value;
+        tile[4] = slider5.value;
+        tile[5] = slider6.value;
       }
       else {
-        tile[0] = .1;
-        tile[1] = .5;
-        tile[2] = .5;
-        tile[3] = 0;
-        tile[4] = 0;
-        tile[5] = 0;
+        tile[0] = slider7.value;
+        tile[1] = slider8.value;
+        tile[2] = slider9.value;
+        tile[3] = slider10.value;
+        tile[4] = slider11.value;
+        tile[5] = slider12.value;
       }
       for (var k = 0; k < tile.length; k++) {
         tile[k] += .001 * Math.random();

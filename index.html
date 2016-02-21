@@ -7,11 +7,7 @@
   <title>Plant RPG</title>
   <meta name="description" content="Competetive plant growth simulator">
 
-  <!-- <link rel="stylesheet" href="style.css"> -->
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.0/lodash.min.js"></script>
-
-
   <script src="types.js"></script>
   <script src="util.js"></script>
   <script src="clock.js"></script>
@@ -21,13 +17,88 @@
   <script src="env.js"></script>
   <script src="fluids.js"></script>
   <script src="reactions.js"></script>
-
   <script src="phaser.js"></script>
   <script src="rhill-voronoi-core.min.js"></script>
   <script src="app.js"></script>
 </head>
 
+<style>
+
+#phaser-example{
+   display: inline-block;
+   text-align:left;
+} 
+#settings{
+  display: inline-block;
+  text-align:right;
+}
+</style>
+
 <body>
-    <div id="phaser-example"></div>
+  <div id="phaser-example"></div>
+  <div id="settings" >
+  Simulation Settings
+  <button onClick="resetSimulation(); startSimulation();">Start Simulation</button>
+  <p>Concentration from empty to saturated</p>
+  <p>Water in the soil</p>
+  <input id="slider1" type="range" min="0" max="1" step=".05" />
+  <p>Carbon dioxide in the soil</p>
+  <input id="slider2" type="range" min="0" max="1" step=".05" />
+  <p>Oxygen in the soil</p>
+  <input id="slider3" type="range" min="0" max="1" step=".05" />
+  <p>Nitrogen in the soil</p>
+  <input id="slider4" type="range" min="0" max="1" step=".05" />
+  <p>Phosphorus in the soil</p>
+  <input id="slider5" type="range" min="0" max="1" step=".05" />
+  <p>Potassium in the soil</p>
+  <input id="slider6" type="range" min="0" max="1" step=".05" />
+  <p>Water in the sky</p>
+  <input id="slider7" type="range" min="0" max="1" step=".05" />
+  <p>Carbon in the sky</p>
+  <input id="slider8" type="range" min="0" max="1" step=".05" />
+  <p>Oxygen in the sky</p>
+  <input id="slider9" type="range" min="0" max="1" step=".05" />
+  <p>Nitrogen in the sky</p>
+  <input id="slider10" type="range" min="0" max="1" step=".05" />
+  <p>Phosphorus in the sky</p>
+  <input id="slider11" type="range" min="0" max="1" step=".05" />
+  <p>Potassium in the sky</p>
+  <input id="slider12" type="range" min="0" max="1" step=".05" />
+  </div>
+
+
+  <script>
+  function showValue(newValue){
+    document.getElementById("range").innerHTML=newValue;
+  }
+  var slider1 = document.getElementById("slider1");
+  var slider2 = document.getElementById("slider2");
+  var slider3 = document.getElementById("slider3");
+  var slider4 = document.getElementById("slider4");
+  var slider5 = document.getElementById("slider5");
+  var slider6 = document.getElementById("slider6");
+  var slider7 = document.getElementById("slider7");
+  var slider8 = document.getElementById("slider8");
+  var slider9 = document.getElementById("slider9");
+  var slider10 = document.getElementById("slider10");
+  var slider11 = document.getElementById("slider11");
+  var slider12 = document.getElementById("slider12");
+
+  slider1.value = .8;
+  slider2.value = .05;
+  slider3.value = .05;
+  slider4.value = .2;
+  slider5.value = .2;
+  slider6.value = .2;
+  slider7.value = .1;
+  slider8.value = .5;
+  slider9.value = .5;
+  slider10.value = 0;
+  slider11.value = 0;
+  slider12.value = 0;
+
+  </script>
 </body>
+
+
 </html>
