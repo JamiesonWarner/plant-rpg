@@ -58,20 +58,21 @@ function makeTiles() {
     for (var j = 0; j < T_WIDTH; j++) {
       var tile = makeTile();
       if (i < 50) {
-        tile[0] = slider1.value;
-        tile[1] = slider2.value;
-        tile[2] = slider3.value;
-        tile[3] = slider4.value;
-        tile[4] = slider5.value;
-        tile[5] = slider6.value;
+        console.log(slider1.value);
+        tile[0] = Number(slider1.value);
+        tile[1] = Number(slider2.value);
+        tile[2] = Number(slider3.value);
+        tile[3] = Number(slider4.value);
+        tile[4] = Number(slider5.value);
+        tile[5] = Number(slider6.value);
       }
       else {
-        tile[0] = slider7.value;
-        tile[1] = slider8.value;
-        tile[2] = slider9.value;
-        tile[3] = slider10.value;
-        tile[4] = slider11.value;
-        tile[5] = slider12.value;
+        tile[0] = Number(slider7.value);
+        tile[1] = Number(slider8.value);
+        tile[2] = Number(slider9.value);
+        tile[3] = Number(slider10.value);
+        tile[4] = Number(slider11.value);
+        tile[5] = Number(slider12.value);
       }
       for (var k = 0; k < tile.length; k++) {
         tile[k] += .001 * Math.random();

@@ -23,14 +23,6 @@ function fluidTick(plant) {
       vecAddInPlace(cell.parent.dnut, negDelta);
     }
 
-    for (var i = 0; i < cell.children.length; i++) {
-      var delta = vecDifference(cell.children[i].nut, cell.nut);
-      vecScale(delta, INTERCELLULAR_COEFF);
-      vecAddInPlace(cell.dnut, delta);
-      var negDelta = vecScale(clone(delta), -1);
-      vecAddInPlace(cell.children[i].dnut, negDelta);
-    };
-
     // Env<->Cell boundary
     var sides = calcSides(cell);
     var rnut = env.getTile(sides[0].x, sides[0].y);

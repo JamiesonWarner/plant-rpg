@@ -21,7 +21,7 @@ function startSimulation() {
 
   onTick(function(){
     //console.log("running convergence tick");
-    plant.mdConvergenceUpdateV2();
+    // plant.mdConvergenceUpdateV2();
     for(var i = 0; i < plant.cells.length; i ++){
       plant.updateGraphics(plant.cells[i]);
     }
@@ -32,7 +32,7 @@ function startSimulation() {
 
     graphics.lineStyle(2, 0xFF33ff);
     graphics.beginFill(0xFF33ff);
-    recursiveDrawBranches(plant.root, {x:plant.root.x - 0.5 * thickness(plant.root) , y: plant.root.y}, 
+    recursiveDrawBranches(plant.root, {x:plant.root.x - 0.5 * thickness(plant.root) , y: plant.root.y},
       {x:plant.root.x + 0.5* thickness(plant.root) , y: plant.root.y}, graphics);
     graphics.endFill();
 
@@ -44,12 +44,12 @@ function startSimulation() {
     var x1 = subtract(vb,va);
     var x2 = subtract(vd,vc)
     if(dotProduct(x1,x2) > 0 ){
-      return new Phaser.Polygon([ new Phaser.Point(va.x, va.y), new Phaser.Point(vb.x, vb.y), 
-        new Phaser.Point(vd.x, vd.y), new Phaser.Point(vc.x, vc.y) ]);  
+      return new Phaser.Polygon([ new Phaser.Point(va.x, va.y), new Phaser.Point(vb.x, vb.y),
+        new Phaser.Point(vd.x, vd.y), new Phaser.Point(vc.x, vc.y) ]);
     }
     else{
-      return new Phaser.Polygon([ new Phaser.Point(va.x, va.y), new Phaser.Point(vb.x, vb.y), 
-        new Phaser.Point(vc.x, vc.y), new Phaser.Point(vd.x, vd.y) ]);  
+      return new Phaser.Polygon([ new Phaser.Point(va.x, va.y), new Phaser.Point(vb.x, vb.y),
+        new Phaser.Point(vc.x, vc.y), new Phaser.Point(vd.x, vd.y) ]);
 
     }
   }
@@ -72,8 +72,8 @@ function startSimulation() {
   }
 
   onTick(function() {
-    fluidTick(plant);
-    reactionsTick(plant);
+    // fluidTick(plant);
+    // reactionsTick(plant);
   });
 }
 
