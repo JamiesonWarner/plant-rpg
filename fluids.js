@@ -15,11 +15,13 @@ function fluidTick(plant) {
     var cell = plant.cells[i];
 
     // Cell<->Cell boundary
-    var delta = vecDifference(cell.parent.nut, cell.nut);
-    vecScale(delta, INTERCELLULAR_COEFF);
-    vecAddInPlace(cell.dnut, delta);
-    var negDelta = vecScale(clone(delta), -1);
-    vecAddInPlace(cell.parent.dnut, negDelta);
+    if (cell.parent) {
+      var delta = vecDifference(cell.parent.nut, cell.nut);
+      vecScale(delta, INTERCELLULAR_COEFF);
+      vecAddInPlace(cell.dnut, delta);
+      var negDelta = vecScale(clone(delta), -1);
+      vecAddInPlace(cell.parent.dnut, negDelta);
+    }
 
     for (var i = 0; i < cell.children.length; i++) {
       var delta = vecDifference(cell.children[i].nut, cell.nut);
