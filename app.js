@@ -16,6 +16,8 @@ function startSimulation() {
 
   var envDisp = 25;
 
+  var graphics = game.add.graphics(0,0)
+
 
   onTick(function(){
     //console.log("running convergence tick");
