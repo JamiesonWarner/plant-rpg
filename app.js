@@ -32,8 +32,8 @@ function startSimulation() {
 
     graphics.lineStyle(2, 0xffd900);
     graphics.beginFill(0xFF33ff);
-    recursiveDrawBranches(plant.root, {x:plant.root.x - 2 * thickness(plant.root) , y: plant.root.y}, 
-      {x:plant.root.x + 2* thickness(plant.root) , y: plant.root.y}, graphics);
+    recursiveDrawBranches(plant.root, {x:plant.root.x - 0.5 * thickness(plant.root) , y: plant.root.y}, 
+      {x:plant.root.x + 0.5* thickness(plant.root) , y: plant.root.y}, graphics);
     graphics.endFill();
 
 
