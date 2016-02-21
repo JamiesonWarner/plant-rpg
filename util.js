@@ -125,7 +125,7 @@ function calcSides(cell) {
     v = [cell.x-cell.parent.x, cell.y-cell.parent.y];
   }
   else {
-    v = [0, 1]
+    v = [0, 1];
   }
   var vleft = [-v[1], v[0]];
   var vright = [v[1], -v[0]];
