@@ -3,9 +3,9 @@ function Plant() {
   this.envCells = []
   this.root;
 
-  generateBasicPlant(this,3);
-  generateEnvironment(this);
-
+  generateBasicPlant(this,4);
+  //generateEnvironment(this);
+  generateEnvironmentBorder(this);
   randomizeMasses(this);
 
   //this.cells = [{x:300,y:300,c:0x00FF00,nut:[1,1,1,1,1,1]},{x:300,y:350,c:0x00FF00,nut:[1,1,1,1,1,1]}];
@@ -39,14 +39,16 @@ function generateBasicPlant(plant, height){
 
   recurse(root,height);
 
+  var startHeight = height;
+
   function recurse(cur, height){
     plant.cells.push(cur);
     if(height === 0){
       return;
     }
     else{
-      var childA = {x: cur.x + Math.pow(2,height) * 5, y: cur.y - 50, c:0x00FF00,nut:[1,1,1,1,1,1]};
-      var childB = {x: cur.x - Math.pow(2,height) * 5, y: cur.y - 50, c:0x00FF00, nut:[1,1,1,1,1,1]};
+      var childA = {x: cur.x + Math.pow(3,height) * 1 , y: cur.y - 50, c:0x00FF00,nut:[1,1,1,1,1,1], parent:cur};
+      var childB = {x: cur.x - Math.pow(3,height) * 1, y: cur.y - 50, c:0x00FF00, nut:[1,1,1,1,1,1], parent:cur};
       cur.children=[childA, childB];
       recurse(childA,height -1);
       recurse(childB, height -1);
@@ -54,6 +56,19 @@ function generateBasicPlant(plant, height){
   }
 
   plant.root = root;
+}
+
+function generateEnvironmentBorder(plant){
+  for(var x = 10; x < bbox.xr; x += 5){
+    plant.envCells.push({x:x, y:10, isEnv:true});
+    plant.envCells.push({x:x, y:bbox.yb - 10, isEnv:true});
+
+  }
+
+  for(var y = 10; y < bbox.yb; y+= 5){
+    plant.envCells.push({x:0, y:10, isEnv:true});
+    plant.envCells.push({x:bbox.xr, y:y , isEnv:true});
+  }
 }
 
 function generateEnvironment(plant){
@@ -142,13 +157,21 @@ Plant.prototype.mdConvergenceUpdateV2 = function(){
         var dif =  v2ConvergeScale * (getMass(cur) + getMass(child)) / cur.children.length - mag_e;
 
         var newDelta = multiply(getNorm(e), learningRate * dif);
-        console.log("New delta : (" + newDelta.x + ", " + newDelta.y + " )");
+        //console.log("New delta : (" + newDelta.x + ", " + newDelta.y + " )");
         recurse(child, add(delta,  newDelta)); 
 
       }    
     }
     moveCell(cur, delta, 1);
+
   }
+}
+
+var thicknessScale = 1;
+
+function thickness(a){
+  return thicknessScale * getMass(a);
+
 }
 
 function getNorm(v){
