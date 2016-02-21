@@ -12,6 +12,7 @@ function startSimulation() {
   // grid = new  Grid();
   plant = new Plant();
   new Sky();
+  new Resources();
 
   voronoiGraphics = game.add.graphics(0, 0);
   onTick(function(){

@@ -48,7 +48,11 @@ function fluidTick(plant) {
       var envNut = env.getTile(envCell.x, envCell.y);
       var delta = vecDifference(envNut, cellNut);
 
-      // Passive transport
+      // Active transport
+      if (delta[WATER] + cellNut[WATER] < .3) {
+        cellNut[GLUCOSE] -= .05;
+        cellNut[WATER] += .1;
+      }
 
       vecScale(delta, INSULATION_COEFF);
       vecAddInPlace(cellNut, delta);

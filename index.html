@@ -15,6 +15,7 @@
   <script src="grid.js"></script>
   <script src="sky.js"></script>
   <script src="env.js"></script>
+  <script src="resources.js"></script>
   <script src="fluids.js"></script>
   <script src="reactions.js"></script>
   <script src="phaser.js"></script>
@@ -27,14 +28,34 @@
 #phaser-example{
    display: inline-block;
    text-align:left;
-} 
+}
 #settings{
   display: inline-block;
   text-align:right;
 }
+
+#resource-bar {
+  width: 100%;
+}
+
+#resource-bar li {
+  display: inline-block;
+}
 </style>
 
 <body>
+  <div id="resource-bar">
+    <ul>
+    <li>H2O: <b id="h20"></b></li>
+    <li>CO2: <b id="co2"></b></li>
+    <li>O2: <b id="o2"></b></li>
+    <li>N2: <b id="n2"></b></li>
+    <li>P: <b id="p"></b></li>
+    <li>K: <b id="k"></b></li>
+    <li>C6H12O6: <b id="c6h12o6"></b></li>
+    <li>ATP: <b id="atp"></b></li>
+    </ul>
+  </div>
   <div id="phaser-example"></div>
   <div id="settings" >
   Simulation Settings
