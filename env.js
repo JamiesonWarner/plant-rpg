@@ -83,6 +83,6 @@ function makeTiles() {
 }
 
 function makeTile() {
-  return [0,0,0,0,0];
+  return zeros(N_NUTRIENTS);
 }
 

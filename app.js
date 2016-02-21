@@ -4,8 +4,7 @@ var game = new Phaser.Game(bbox.xr, bbox.yb, Phaser.AUTO, 'phaser-example', {cre
 
 var env,
     grid,
-    plant,
-    voronoiGraphics;
+    plant;
 
 function startSimulation() {
   env = new Env();
@@ -30,8 +29,8 @@ function startSimulation() {
     graphics.clear();
 
 
-    graphics.lineStyle(2, 0xFF33ff);
-    graphics.beginFill(0xFF33ff);
+    graphics.lineStyle(2, 0xA52A2A);
+    graphics.beginFill(0xA52A2A);
     recursiveDrawBranches(plant.root, {x:plant.root.x - 0.5 * thickness(plant.root) , y: plant.root.y},
       {x:plant.root.x + 0.5* thickness(plant.root) , y: plant.root.y}, graphics);
     graphics.endFill();
@@ -68,12 +67,12 @@ function startSimulation() {
       poly = getCorrectPolygon(va,vb,vc,vd);
       g.drawPolygon(poly.points);
       recursiveDrawBranches(child, vc, vd, g);
-    } 
+    }
   }
 
   onTick(function() {
     fluidTick(plant);
-    // reactionsTick(plant);
+    reactionsTick(plant);
   });
 }
 
@@ -82,7 +81,6 @@ function resetSimulation() {
   tickCbs.length = 0;
   env.destroy();
   plant.destroy();
-  voronoiGraphics.destroy();
 }
 
 function create() {

@@ -1,7 +1,7 @@
 /*
 Put chemical constants, matrices here.
 */
-var N_NUTRIENTS = 8;
+var N_NUTRIENTS = 9;
 
 var WATER = 0;
 var CARBON_DIOXIDE = 1;
@@ -11,6 +11,7 @@ var PHOSPHORUS = 4;
 var POTASSIUM = 5;
 var GLUCOSE = 6;
 var ATP = 7;
+var AUXIN = 8;
 
 var CHEMICAL_FORMULAS = [
   'H2O',
@@ -20,7 +21,8 @@ var CHEMICAL_FORMULAS = [
   'P',
   'K',
   'C6H12O6',
-  'ATP'
+  'ATP',
+  'AUXIN'
 ]
 
 var CHEMICAL_NAMES = [
@@ -31,7 +33,8 @@ var CHEMICAL_NAMES = [
   'phosphorus',
   'potassium',
   'glucose',
-  'ATP'
+  'ATP',
+  'AUXIN'
 ]
 
 var CHEMICAL_COLORS = [
@@ -42,7 +45,8 @@ var CHEMICAL_COLORS = [
   0x5F4E44,
   0x604434,
   0xaaaaaa,
-  0xbbbbbb
+  0xbbbbbb,
+  0xff00ff
 ]
 
 var N_ORGANS = 1;

@@ -1,9 +1,10 @@
 function Plant() {
   this.cells = [];
   this.envCells = []
+  this.alive = true;
   this.root;
 
-  generateBeanPlant(this);
+  generateComplicatedPlant(this, 1);
   //generateEnvironment(this);
   //generateEnvironmentBorder(this);
   randomizeMasses(this);
@@ -32,7 +33,7 @@ Plant.prototype.destroy = function() {
   };
 }
 
-var nutDensity = [1,1,1,1,1,1,1,1];
+var nutDensity = [1,1,1,1,1,1,1,1,1];
 
 var getMass = function(cell){
   var mass = 0;
@@ -43,16 +44,17 @@ var getMass = function(cell){
 }
 
 function generateBeanPlant(plant){
-  plant.root = {x: 300, y: 280, c:0x00FF00, nut:[1,1,1,1,1,1,1,1]};
-  plant.cells = [
-    plant.root,
-    {x: 300, y: 320, c:0x00FF00, nut:[1,1,1,1,1,1,1,1], parent: plant.root}
-  ];
+  var a1 = {x: 300, y: 280, c:0x00FF00, nut:[1,1,1,1,1,1,1,1]};
+  var b1 = {x: 300, y: 320, c:0x00FF00, nut:[1,1,1,1,1,1,1,1], parent: a1, children: []};
+  a1.children = [b1];
+
+  plant.root = a1;
+  plant.cells.push(a1);
 }
 
 function generateComplicatedPlant(plant, height){
 
-  var root = {x: 400, y: 400, c:0x00FF00, nut:[1,1,1,1,1,1]};
+  var root = {x: 300, y: 320, c:0xA52A2A, nut:[1,1,1,1,1,1,1,1,2], root: true};
 
   recurse(root,height);
 
@@ -64,8 +66,8 @@ function generateComplicatedPlant(plant, height){
       return;
     }
     else{
-      var childA = {x: cur.x + Math.pow(3,height) * 1 , y: cur.y - 50, c:0x00FF00,nut:[1,1,1,1,1,1], parent:cur};
-      var childB = {x: cur.x - Math.pow(3,height) * 1, y: cur.y - 50, c:0x00FF00, nut:[1,1,1,1,1,1], parent:cur};
+      var childA = {x: cur.x + Math.pow(3,height) * 1, y: cur.y - 50, c:0xA52A2A, nut:[1,1,1,1,1,1,1,1,2], parent:cur, root: false};
+      var childB = {x: cur.x - Math.pow(3,height) * 1, y: cur.y - 50, c:0xA52A2A, nut:[1,1,1,1,1,1,1,1,2], parent:cur, root: false};
       cur.children=[childA, childB];
       recurse(childA,height -1);
       recurse(childB, height -1);
@@ -75,9 +77,79 @@ function generateComplicatedPlant(plant, height){
   plant.root = root;
 }
 
+Plant.prototype.divideCell = function(cell){
+  var newNut = clone(cell.nut);
+  vecScale(newNut, .5);
+  vecScale(cell.nut, .5);
+  var newCell = {x: cell.x + 10*Math.random(), y: cell.y + 10*Math.random(), c:0xA52A2A, nut:newNut, parent:cell, root: cell.root}
+  if (cell.root) {
+    // Divide down
+    newCell.y += 50;
+  }
+  else {
+    // Divide up
+    newCell.y -= 50;
+  }
+  if (!cell.children) {
+    cell.children = [];
+  }
 
-Plant.prototype.smartGrow = function(){
-  
+  // Move away from cousins if any
+  var t = newCell;
+  var i = 0;
+  while (t != plant.root) {
+    t = t.parent;
+    i ++;
+  }
+
+  function getChildrenAtDepth(node, depth) {
+    if (depth == 1) {
+      if (node.children) {
+        return node.children;
+      }
+      else {
+        return [node];
+      }
+    }
+    else if (depth == 0) {
+      return [node];
+    }
+    else {
+      var c = [];
+      for (var k = 0; k < node.children.length; k++) {
+        c = c.concat(getChildrenAtDepth(node.children[k], depth-1));
+      };
+      return c;
+    }
+  }
+
+  var cousins = getChildrenAtDepth(plant.root, i);
+  console.log('cousins', cousins, i);
+
+  for (var j = 0; j < cousins.length; j++) {
+    var c = cousins[j];
+    if (newCell == c) continue;
+    if ((newCell.x - c.x)*(newCell.x - c.x) + (newCell.y - c.y)*(newCell.y - c.y) < 2500) {
+      console.log('adjusting');
+      if (newCell.x > c.x) {
+        newCell.x += 40;
+        c.x -= 40;
+      }
+      if (newCell.x < c.x) {
+        newCell.x -= 40;
+        c.x += 40;
+      }
+    }
+  };
+
+  newCell.nut[AUXIN] = Math.max(cell.nut[AUXIN], 3);
+  cell.nut[AUXIN] = Math.min(cell.nut[AUXIN], .5);
+
+  cell.children.push(newCell);
+  newCell.parent = cell;
+  addCell(newCell);
+  this.updateGraphics(cell);
+  this.updateGraphics(newCell);
 }
 
 function generateEnvironmentBorder(plant){

@@ -12,12 +12,12 @@ function updateResourceBar() {
     };
   };
 
-  document.getElementById('h20').textContent = sumResources[WATER];
-  document.getElementById('co2').textContent = sumResources[CARBON_DIOXIDE];
-  document.getElementById('n2').textContent = sumResources[OXYGEN];
-  document.getElementById('o2').textContent = sumResources[NITROGEN];
-  document.getElementById('p').textContent = sumResources[PHOSPHORUS];
-  document.getElementById('k').textContent = sumResources[POTASSIUM];
-  document.getElementById('c6h12o6').textContent = sumResources[GLUCOSE];
-  document.getElementById('atp').textContent = sumResources[ATP];
+  document.getElementById('h20').textContent = sumResources[WATER].toFixed(2);
+  document.getElementById('co2').textContent = sumResources[CARBON_DIOXIDE].toFixed(2);
+  document.getElementById('n2').textContent = sumResources[OXYGEN].toFixed(2);
+  document.getElementById('o2').textContent = sumResources[NITROGEN].toFixed(2);
+  document.getElementById('p').textContent = sumResources[PHOSPHORUS].toFixed(2);
+  document.getElementById('k').textContent = sumResources[POTASSIUM].toFixed(2);
+  document.getElementById('c6h12o6').textContent = sumResources[GLUCOSE].toFixed(2);
+  document.getElementById('atp').textContent = sumResources[ATP].toFixed(2);
 }

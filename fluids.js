@@ -1,5 +1,5 @@
-var INSULATION_COEFF = .1;
-var INTERCELLULAR_COEFF = .2;
+var INSULATION_COEFF = .01;
+var INTERCELLULAR_COEFF = .4;
 
 /*
 Adds value dnut to every cell
@@ -36,10 +36,10 @@ function fluidTick(plant) {
     vecAddInPlace(cell.dnut, delta);
 
     // Active transport
-    // if (delta[WATER] + cellNut[WATER] < .3) {
-    //   cellNut[GLUCOSE] -= .05;
-    //   cellNut[WATER] += .1;
-    // }
+    if (delta[WATER] + cell.nut[WATER] < 1) {
+      cell.nut[GLUCOSE] -= .1;
+      cell.nut[WATER] += 1;
+    }
   };
 
   // Apply deltas
