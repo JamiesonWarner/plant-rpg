@@ -120,7 +120,13 @@ Given a cell {x,y,parent,nut} returns an array of its two sides [left, right]
 where left, right are {x,y}.
 */
 function calcSides(cell) {
-  var v = [cell.x-cell.parent.x, cell.y-cell.parent.y];
+  var v;
+  if (cell.parent) {
+    v = [cell.x-cell.parent.x, cell.y-cell.parent.y];
+  }
+  else {
+    v = [0, 1]
+  }
   var vleft = [-v[1], v[0]];
   var vright = [v[1], -v[0]];
   var width = l1norm(cell.nut);

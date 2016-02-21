@@ -5,7 +5,7 @@ var makeChloroplast = {
 }
 
 var photosynthesis = {
-  cost:
+  // cost:
 }
 
 function performOperation(cell, operation, ntimes) {
