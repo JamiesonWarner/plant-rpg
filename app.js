@@ -72,7 +72,7 @@ function startSimulation() {
   }
 
   onTick(function() {
-    // fluidTick(plant);
+    fluidTick(plant);
     // reactionsTick(plant);
   });
 }

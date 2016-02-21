@@ -27,10 +27,12 @@ function fluidTick(plant) {
     var sides = calcSides(cell);
     var rnut = env.getTile(sides[0].x, sides[0].y);
     var delta = vecDifference(rnut, cell.nut);
+    vecScale(delta, INSULATION_COEFF);
     vecAddInPlace(cell.dnut, delta);
 
     var lnut = env.getTile(sides[1].x, sides[1].y);
     var delta = vecDifference(lnut, cell.nut);
+    vecScale(delta, INSULATION_COEFF);
     vecAddInPlace(cell.dnut, delta);
 
     // Active transport
