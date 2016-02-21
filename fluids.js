@@ -1,11 +1,5 @@
-function FluidSim(plant) {
-  this.plant = plant;
-  onTick(function() {
-    // this.calculateTick();
-  });
-}
-
 var INSULATION_COEFF = .1;
+var INTERCELLULAR_COEFF = .2;
 
 /*
 Adds value dnut to every cell
@@ -15,49 +9,41 @@ function fluidTick(plant) {
   for (var i = 0; i < plant.cells.length; i++) {
     plant.cells[i].dnut = zeros(N_NUTRIENTS);
   };
-  for (var i = 0; i < plant.envCells.length; i++) {
-    plant.envCells[i].dnut = zeros(N_NUTRIENTS);
-  };
 
   // Calculate dnut on every cell as a function of passive transport
-  var vDiagram = plant.getVoronoiDiagram();
-  for (var i = 0; i < vDiagram.edges.length; i++) {
-    var edge = vDiagram.edges[i];
-    if (!edge.lSite || !edge.rSite) continue;
-    var lnut = edge.lSite.nut,
-        rnut = edge.rSite.nut;
-    // Env<->Env boundary
-    if (!lnut && !rnut) {
-      continue;
-    }
+  for (var i = 0; i < plant.cells.length; i++) {
+    var cell = plant.cells[i];
+
     // Cell<->Cell boundary
-    else if (lnut && rnut) {
-      // Passive transport
-      var delta = vecDifference(lnut,rnut);
-      vecScale(delta, INSULATION_COEFF);
-      vecAddInPlace(rnut, delta);
+    var delta = vecDifference(cell.parent.nut, cell.nut);
+    vecScale(delta, INTERCELLULAR_COEFF);
+    vecAddInPlace(cell.dnut, delta);
+    var negDelta = vecScale(clone(delta), -1);
+    vecAddInPlace(cell.parent.dnut, negDelta);
+
+    for (var i = 0; i < cell.children.length; i++) {
+      var delta = vecDifference(cell.children[i].nut, cell.nut);
+      vecScale(delta, INTERCELLULAR_COEFF);
+      vecAddInPlace(cell.dnut, delta);
       var negDelta = vecScale(clone(delta), -1);
-      vecAddInPlace(lnut, negDelta);
-    }
+      vecAddInPlace(cell.children[i].dnut, negDelta);
+    };
+
     // Env<->Cell boundary
-    else {
-      var envCell = lnut? edge.rSite : edge.lSite,
-          cellNut = lnut? lnut: rnut;
+    var sides = calcSides(cell);
+    var rnut = env.getTile(sides[0].x, sides[0].y);
+    var delta = vecDifference(rnut, cell.nut);
+    vecAddInPlace(cell.dnut, delta);
 
-      // Passive transport
-      var envNut = env.getTile(envCell.x, envCell.y);
-      var delta = vecDifference(envNut, cellNut);
+    var lnut = env.getTile(sides[1].x, sides[1].y);
+    var delta = vecDifference(lnut, cell.nut);
+    vecAddInPlace(cell.dnut, delta);
 
-      // Active transport
-      if (delta[WATER] + cellNut[WATER] < .3) {
-        cellNut[GLUCOSE] -= .05;
-        cellNut[WATER] += .1;
-      }
-
-      vecScale(delta, INSULATION_COEFF);
-      vecAddInPlace(cellNut, delta);
-
-    }
+    // Active transport
+    // if (delta[WATER] + cellNut[WATER] < .3) {
+    //   cellNut[GLUCOSE] -= .05;
+    //   cellNut[WATER] += .1;
+    // }
   };
 
   // Apply deltas

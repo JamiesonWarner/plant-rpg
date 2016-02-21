@@ -41,50 +41,65 @@
 #resource-bar li {
   display: inline-block;
 }
+
+.block1 {
+  float: left;
+}
+
+.block2 {
+  float: left;
+  margin: 30px;
+  padding: 12px;
+  background-color: #bbbbbb;
+}
 </style>
 
 <body>
-  <div id="resource-bar">
-    <ul>
-    <li>H2O: <b id="h20"></b></li>
-    <li>CO2: <b id="co2"></b></li>
-    <li>O2: <b id="o2"></b></li>
-    <li>N2: <b id="n2"></b></li>
-    <li>P: <b id="p"></b></li>
-    <li>K: <b id="k"></b></li>
-    <li>C6H12O6: <b id="c6h12o6"></b></li>
-    <li>ATP: <b id="atp"></b></li>
-    </ul>
+  <div class="block1">
+    <div id="resource-bar">
+      <ul>
+      <li>H2O: <b id="h20"></b></li>
+      <li>CO2: <b id="co2"></b></li>
+      <li>O2: <b id="o2"></b></li>
+      <li>N2: <b id="n2"></b></li>
+      <li>P: <b id="p"></b></li>
+      <li>K: <b id="k"></b></li>
+      <li>C6H12O6: <b id="c6h12o6"></b></li>
+      <li>ATP: <b id="atp"></b></li>
+      </ul>
+    </div>
+    <div id="phaser-example"></div>
   </div>
-  <div id="phaser-example"></div>
-  <div id="settings" >
-  Simulation Settings
-  <button onClick="resetSimulation(); startSimulation();">Start Simulation</button>
-  <p>Concentration from empty to saturated</p>
-  <p>Water in the soil</p>
-  <input id="slider1" type="range" min="0" max="1" step=".05" />
-  <p>Carbon dioxide in the soil</p>
-  <input id="slider2" type="range" min="0" max="1" step=".05" />
-  <p>Oxygen in the soil</p>
-  <input id="slider3" type="range" min="0" max="1" step=".05" />
-  <p>Nitrogen in the soil</p>
-  <input id="slider4" type="range" min="0" max="1" step=".05" />
-  <p>Phosphorus in the soil</p>
-  <input id="slider5" type="range" min="0" max="1" step=".05" />
-  <p>Potassium in the soil</p>
-  <input id="slider6" type="range" min="0" max="1" step=".05" />
-  <p>Water in the sky</p>
-  <input id="slider7" type="range" min="0" max="1" step=".05" />
-  <p>Carbon in the sky</p>
-  <input id="slider8" type="range" min="0" max="1" step=".05" />
-  <p>Oxygen in the sky</p>
-  <input id="slider9" type="range" min="0" max="1" step=".05" />
-  <p>Nitrogen in the sky</p>
-  <input id="slider10" type="range" min="0" max="1" step=".05" />
-  <p>Phosphorus in the sky</p>
-  <input id="slider11" type="range" min="0" max="1" step=".05" />
-  <p>Potassium in the sky</p>
-  <input id="slider12" type="range" min="0" max="1" step=".05" />
+  <div class="block2">
+    <div id="settings" >
+    Simulation Settings
+    <button onClick="resetSimulation(); startSimulation();">Start Simulation</button>
+    <p>Concentration from empty to saturated</p>
+    <p>Water in the soil</p>
+    <input id="slider1" type="range" min="0" max="1" step=".05" />
+    <p>Carbon dioxide in the soil</p>
+    <input id="slider2" type="range" min="0" max="1" step=".05" />
+    <p>Oxygen in the soil</p>
+    <input id="slider3" type="range" min="0" max="1" step=".05" />
+    <p>Nitrogen in the soil</p>
+    <input id="slider4" type="range" min="0" max="1" step=".05" />
+    <p>Phosphorus in the soil</p>
+    <input id="slider5" type="range" min="0" max="1" step=".05" />
+    <p>Potassium in the soil</p>
+    <input id="slider6" type="range" min="0" max="1" step=".05" />
+    <p>Water in the sky</p>
+    <input id="slider7" type="range" min="0" max="1" step=".05" />
+    <p>Carbon in the sky</p>
+    <input id="slider8" type="range" min="0" max="1" step=".05" />
+    <p>Oxygen in the sky</p>
+    <input id="slider9" type="range" min="0" max="1" step=".05" />
+    <p>Nitrogen in the sky</p>
+    <input id="slider10" type="range" min="0" max="1" step=".05" />
+    <p>Phosphorus in the sky</p>
+    <input id="slider11" type="range" min="0" max="1" step=".05" />
+    <p>Potassium in the sky</p>
+    <input id="slider12" type="range" min="0" max="1" step=".05" />
+    </div>
   </div>
 
 

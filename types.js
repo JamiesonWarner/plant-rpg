@@ -44,3 +44,5 @@ var CHEMICAL_COLORS = [
   0xaaaaaa,
   0xbbbbbb
 ]
+
+var N_ORGANS = 1;
