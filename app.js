@@ -4,29 +4,18 @@ var game = new Phaser.Game(bbox.xr, bbox.yb, Phaser.AUTO, 'phaser-example', {cre
 
 var env,
     grid,
-    plant;
+    plant,
+    voronoiGraphics;
 
-function create() {
-
+function startSimulation() {
   env = new Env();
-  grid = new  Grid();
+  // grid = new  Grid();
   plant = new Plant();
-  // var fluidSim = new FluidSim(plant);
-
-  game.stage.backgroundColor = '#40a4df';
-
-  var vDiagram = plant.getVoronoiDiagram();
-  plant.printVoronoiDiagram();
-  window.vDiagram = vDiagram;
-
-
-  var graphics = game.add.graphics(0, 0);
-  
-
-  console.log("test");
-  
+  new Sky();
+  new Resources();
 
   var envDisp = 25;
+
 
   onTick(function(){
     //console.log("running convergence tick");
@@ -35,7 +24,9 @@ function create() {
       plant.updateGraphics(plant.cells[i]);
     }
 
+
     graphics.clear();
+
 
     graphics.lineStyle(2, 0xffd900);
     graphics.beginFill(0xFF33ff);
@@ -57,6 +48,7 @@ function create() {
     else{
       return new Phaser.Polygon([ new Phaser.Point(va.x, va.y), new Phaser.Point(vb.x, vb.y), 
         new Phaser.Point(vc.x, vc.y), new Phaser.Point(vd.x, vd.y) ]);  
+
     }
   }
 
@@ -77,16 +69,23 @@ function create() {
     }
   }
 
-  //plant.cells
-  //plant.envCells
-
-  /*onTick(function() {
-    // plant.simpleUpdate()
+  onTick(function() {
     fluidTick(plant);
-  });*/
+    reactionsTick(plant);
+  });
+}
 
-  // Game world will be 100x100 blocks
-  // Set up render loops
+function resetSimulation() {
+  hour = 0;
+  tickCbs.length = 0;
+  env.destroy();
+  plant.destroy();
+  voronoiGraphics.destroy();
+}
+
+function create() {
+  game.stage.backgroundColor = '#40a4df';
+  startSimulation();
 }
 
 

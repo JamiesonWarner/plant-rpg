@@ -23,6 +23,15 @@ function Plant() {
 
 }
 
+Plant.prototype.destroy = function() {
+  for (var i = 0; i < this.cells.length; i++) {
+    this.cells[i].graphics.destroy();
+  };
+  for (var i = 0; i < this.envCells.length; i++) {
+    this.envCells[i].graphics.destroy();
+  };
+}
+
 var nutDensity = [1,1,1,1,1,1];
 
 var getMass = function(cell){
@@ -160,7 +169,8 @@ Plant.prototype.mdConvergenceUpdateV2 = function(){
         //console.log("New delta : (" + newDelta.x + ", " + newDelta.y + " )");
         recurse(child, add(delta,  newDelta)); 
 
-      }    
+
+      }
     }
     moveCell(cur, delta, 1);
 
@@ -261,6 +271,7 @@ function magnitude(v){
 Plant.prototype.updateGraphics = function(cell){
   cell.graphics.x = cell.x;
   cell.graphics.y = cell.y;
+
 }
 
 
@@ -270,7 +281,10 @@ Plant.prototype.updateGraphics = function(cell){
 function addCell(cell) {
 
   var graphics = game.add.graphics(cell.x, cell.y);
-  graphics.beginFill(cell.c || 0x000000, 1);
+  if (cell.nut) {
+    console.log('color', nutrientColor(cell.nut));
+  }
+  graphics.beginFill( (cell.nut && nutrientColor(cell.nut)) || 0x000000, 1);
   graphics.drawCircle(0, 0, 10 );//* cell.m / 10);
   cell.graphics = graphics;
 }

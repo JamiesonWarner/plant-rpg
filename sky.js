@@ -7,23 +7,25 @@
 //0 to 24
 var skyColors = [
 0x10102C, 0x20203C, 0x404040, 0x606060, 0x707070,
-0x879E9B, 0x879ECA, 0xB0C0D6, 0xF0F8FF, 0xFFFFFF,
+0x879E9B, 0x97AECA, 0xB0C0D6, 0xF0F8FF, 0xFFFFFF,
 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF,
 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xF7BE81, 0xFE9A2E,
 0x045FB4, 0x084B8A, 0x084B8A, 0x0B0B61
 ]
+var hour = 0;
 
-
+function Sky() {
+  onTick(function() {
+    hour ++;
+    hour %= 24;
+  });
+}
 
 function lightColorTimeOfDay(hour) {
 	return skyColors[hour];
 }
 
-var hour = 0;
-onTick(function() {
-  hour ++;
-  hour %= 24;
-});
+
 
 function currentLightColor() {
   return lightColorTimeOfDay(hour);
