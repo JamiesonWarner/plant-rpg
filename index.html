@@ -75,6 +75,8 @@
     <div id="settings" >
     Simulation Settings
     <button onClick="resetSimulation(); startSimulation();">Start Simulation</button>
+    <p>Apical Dominance</p>
+    <input id="slider13" type="range" min="0" max="1" step=".05" />
     <p>Concentration from empty to saturated</p>
     <p>Water in the soil</p>
     <input id="slider1" type="range" min="0" max="1" step=".05" />
@@ -120,6 +122,7 @@
   var slider10 = document.getElementById("slider10");
   var slider11 = document.getElementById("slider11");
   var slider12 = document.getElementById("slider12");
+  var slider13 = document.getElementById("slider13");
 
   slider1.value = .8;
   slider2.value = .05;
@@ -133,6 +136,7 @@
   slider10.value = 0;
   slider11.value = 0;
   slider12.value = 0;
+  slider13.value = .5;
 
   </script>
 </body>
