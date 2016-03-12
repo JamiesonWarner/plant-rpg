@@ -17,10 +17,11 @@ function Env() {
   this.graphics.addToWorld();
 
   var self = this;
+  // registerDraw(this.draw, this);
   onTick(function() {
     self.draw();
   })
-  // window.graphics = graphics;
+  window.graphics = graphics;
 }
 
 Env.prototype.destroy = function() {

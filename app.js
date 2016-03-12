@@ -2,6 +2,11 @@
 var bbox = {xl: 0, xr: 600, yt: 0, yb: 600};
 var game = new Phaser.Game(bbox.xr, bbox.yb, Phaser.AUTO, 'phaser-example', {create: create});
 
+var simulation = new
+
+var FPS=30;
+draw.startInterval(1000/FPS);
+
 var env,
     grid,
     plant;
